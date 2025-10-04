@@ -15,10 +15,10 @@ class CharTokenizer:
         self.itos = {i: s for s, i in self.stoi.items()}
 
     def encode(self, text:str):
-        return [self.stoi.get(ch, "<unk>") for ch in text]
+        return [self.stoi.get(ch, self.unk_id) for ch in text]
     
-    def decode(self, ids: list[int]):
-        return [self.itos.get(i, self.stoi["<unk>"]) for i in ids]
+    def decode(self, ids: list[int], skip_special_token=False):
+        return [self.itos.get(i, "<unk>" if not skip_special_token else "") for i in ids]
     
 
     @property

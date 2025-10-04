@@ -1,16 +1,14 @@
 import torch
 import torch.nn.functional as F
 
-SEQ_LENGTH = 8
-BATCH_SIZE = 2
-D_MODEL = 256
-N_LAYERS = 4
-N_HEADS = 4
+SEQ_LENGTH = 32
+D_MODEL = 512
+N_LAYERS = 6
+N_HEADS = 8
 FFN_FACTOR = 4
-NUM_EPOCHS = 10
 
 @torch.no_grad()
-def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, device="cpu"):
+def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, device=torch.device("cpu")):
     """
     model: trained TransformerLM
     tokenizer: CharTokenizer
@@ -64,6 +62,6 @@ if __name__ == "__main__":
     model.load_state_dict(torch.load("checkpoints/checkpoint_epoch9.pt", map_location=device))
     model.eval()
 
-    prompt = "Hello my name is"
-    generated_text = generate(model, tokenizer, prompt, max_new_tokens=20, temperature=1, device=device)
+    prompt = "What is coding?"
+    generated_text = generate(model, tokenizer, prompt, max_new_tokens=1024, temperature=1, device=device)
     print("".join(generated_text))

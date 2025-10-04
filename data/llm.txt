@@ -1,0 +1,444 @@
+TEI TRW3
+ 
+The encoding of sample text corpora (draft, version 1, part 1)
+ 
+Stig Johansson 6 August 1989
+ 
+1. Definition of text type
+ 
+A corpus is a collection of texts put together in a principled way. We
+may distinguish between:
+ 
+    a. sample text corpora
+    b. full text corpora
+    c. monitor text corpora
+ 
+While the first two are closed and limited in size, the third is
+open-ended and expanding. A monitor corpus is, in fact, a text archive
+or "language bank". Sample text corpora contain text extracts, full text
+corpora consist of whole texts. Typical examples of the three types are
+the Brown Corpus (a), the Leuven Drama Corpus (b), and the Birmingham
+Collection of English Text (c).
+ 
+A corpus may consist of raw text or it may be annotated ("tagged"). For
+example, each word may be provided with a part-of-speech label. The
+tagged Brown Corpus is an example of an annotated text corpus.
+ 
+Note: I am here restricting the notion of a corpus to collections of
+running text. The definition excludes word lists, concordances,
+collections of citations, and the like.
+ 
+2. Requirements for sample text corpora
+ 
+Sample text corpora have usually been put together for the purposes of
+linguistic (including stylistic) analysis. The extracts are typically
+numerous and often of a specified length (for example, 500 texts of
+2,000 words as in the Brown Corpus), and they typically represent a
+range of text types. The main challenge for the corpus compiler is to
+achieve uniformity of text encoding while staying as close possible to
+the original text.
+ 
+The minimal requirements for a sample text corpus are that, besides the
+text, it contains or is supplemented by:
+ 
+ - text identification
+ - a coding key
+ - a reference system
+ 
+In addition, the corpus should be supplemented by information on the
+principles governing the selection of text extracts.
+ 
+2.1 Text identification
+ 
+The minimal information needed is: author, title, time and place of
+publication, location of extract, copyright note. In addition, it may be
+useful to include an indication of genre category and a note on
+idiosyncratic features of the text (such as typographical errors,
+idiosyncratic spelling, or the presence of dialect or foreign-language
+quotations). If changes have been made with respect to the original text
+(e.g. normalization of spelling or omission of parts of the text), this
+must be recorded.
+ 
+2.2 Text encoding
+ 
+The goals of the text endocing must be to produce a faithful
+representation of the text with as little loss of information as
+possible. Codes for special characters or symbols must be specified in a
+coding key. If a character or symbol is left uncoded, there must be a
+mechanism to show this.
+ 
+Typographical errors in the original text may be faithfully reproduced
+or they may be corrected. In the former case there must be a mechanism
+for specifying the form in the original text, in the latter it may be
+useful to insert a comment tag (corresponding to SIC in printed texts).
+ 
+In general, there is a need for a mechanism for comment by the
+electronic editor. In the LOB Corpus comment tags were used for a) text
+identification, b) material left out in the machine-readable version
+(figures, tables, maps, etc), c) missing end-quote marks, d) SIC
+marking.
+ 
+A lot can be done with a text provided only with codes for special
+characters or symbols and some editorial comment. It may, however, be
+useful to add some enhancements. For example, we may wish to insert tags
+to identify particular sections of the text, either to study these or to
+provide reference points for studies of other elements or features of
+the text.
+ 
+In a sample corpus consisting of a variety of text types it is not
+possible to define a common overall structure, except in a very general
+manner: text identification + text. There is, however, a range of common
+features which it may be useful to mark. The discussion is limited to
+written texts, for which there are established organisa- tional
+conventions.
+ 
+2.2.1 Paragraph
+ 
+Written texts of all kinds contain paragraphs. These are semantic units
+marked off formally by indentation and/or by being separated from the
+surrounding text by blank lines. Problems of identification arise
+because indentation and blank lines are also used for other purposes,
+e.g. with headings and list items. The identification is usually clear,
+however, for the human editor (but see the discussion of lists below).
+ 
+Paragraphs form part of larger units, such as chapters and sections.
+They consist of a variable number of sentences. Note that there are
+one-sentence paragraphs, e.g. in popular newspapers or in fictional
+dialogue; these should be marked both as paragraphs and as sentences.
+More exceptionally, there are paragraphs which form part of sentences,
+e.g. in some types of legal texts and in the final sentence of Joyce's
+ULYSSES.
+ 
+The paragraph is a very useful unit, both for linguistic study and for
+information retrieval. Hence it is important to mark it explicitly and
+to resolve the ambiguity inherent in existing typographical conventions.
+ 
+2.2.2 Sentence
+ 
+Many users of machine-readable texts have measured characteristics of
+sentences, such as their length or complexity. For many types of
+studies, lexical as well as grammatical or stylistic, the sentence is
+also a very useful point of reference. But it is notoriously hard to
+define. Its essence is independence of the surroundings; structural,
+phonological, and orthographic. In this context the sentence is best
+defined orthographically. It opens with a capital letter and ends with a
+major punctuation mark; a full stop, a question mark, or an exclamation
+mark.
+ 
+Sentences can be simple (consisting of a single clause), compound
+(consisting of coordinated clauses), or complex (including subordinate
+clauses). In addition, there are sentence fragments, consisting of
+phrases or single words. The distinction between phrase and clause is
+crucial. Though they often overlap, there is a characteristic
+difference. A sentence is a unit of text. A clause is defined in terms
+of its internal structure. Nevertheless, the proto-typical sentence has
+the structure of a clause.
+ 
+There are some problems in applying our definition, as we shall see
+below. End punctuation is often missing with included sentences (e.g. in
+quotations). On the other hand, a full stop does not necessarily
+indicate the end of a sentence (as with enumerators and abbreviations).
+Capitalization may be an uncertain guide (e.g.  with capitalized list
+items). In other words, our orthographic criterion must be used with
+discretion. In cases of doubt it is preferable to use a sentence
+division which maximizes the number of proto-typical sentences (with
+clause structure) and reduces the number of sentence fragments.
+ 
+A particular problem with our orthographic definition is that it is not
+applicable to spoken material. It may very well be that the analysis
+into sentences is inapplicable in this case. As in the London-Lund
+Corpus, it may be preferable to have a primary division into tone units.
+Or it may be possible to apply the notion of a "macro-syntagm", as in
+some Scandinavian analyses of spoken material (where the definition is
+based on internal cohesion and external independence and is thus
+reminiscent of the definition of the sentence in written material).
+ 
+2.2.3 List
+ 
+A list consists of a set of items arranged typographically in a parallel
+manner and containing information presented by the author as equal on
+some level (not necessarily in weight or importance, however). It is a
+presentation device which makes it easier to focus on, comment on, or
+refer to each item.
+ 
+A list item is optionally introduced by an enumerator (a, b, c, ...; 1,
+2, 3, ...; etc). The rest may be a single word or phrase, a sentence, a
+sequence of sentences, or even a block containing paragraph division.
+(Enumerators may also introduce chapters, sections, paragraphs -- for
+example, in legal statutes and textbooks --, example sentences, etc.)
+ 
+The coding of lists vs sentences and paragraphs is not straightforward.
+Superficially a list item may look like a paragraph (because of
+indentation and/or separation by blank lines). But a list is typically
+part of a sentence, e.g. "This is due to the following factors: ...". On
+the other hand, list items may very well contain sentences, and even
+paragraphs. It is thus not possible to set up a simple hierarchical
+structure. (This sort of relationship is, however, no surprise to the
+linguist who is used to the notion of rank shift:  for example, clauses
+are made up of phrases, which in their turn may contain clauses.)
+ 
+In addition to the complexities just mentioned, lists may contain lists,
+as in:
+ 
+"2.4.3 Optional features All the optional features are needed to process
+FORMEX records, namely:
+ - the document mark-up level features:
+    - SHORTTAG
+    - OMITTAG
+    - SHORTREF
+    - DATATAG
+    - RANK
+ - the document type features:
+    - CONCUR
+    - SUBDOC"
+ 
+This is a section consisting of an enumerator, a heading, and one
+paragraph.  The paragraph contains a single sentence with an embedded
+list containing two list items each consisting of a list.
+ 
+To handle these complexities, it is necessary to introduce different
+levels of elements: sentence 1 (part of paragraph), sentence 2 (within
+the domain of sentence 1), paragraph 1, paragraph 2, list 1, list 2,
+etc.  Level 2 sentences are also needed in connection with quotation
+(see below) and with example sentences in linguistic or philosophical
+discourse.
+ 
+While list items are typically part of sentences or can be divided into
+sentences or paragraphs, this is not always the case. Bibliographies and
+recipes in cookbooks are, for example, best treated as just containing
+list items.
+ 
+2.2.4 Heading
+ 
+A heading is typically highlighted typographically and separated from
+the surrounding text. It may be preceded by an enumerator (as above).
+Headings may occur on different levels (chapter, section, sub-section,
+etc).
+ 
+Headings are characteristically (though not necessarily) different in
+structure from ordinary sentences. Like enumerators they have a
+predominantly organizational function; they organize the text rather
+than refer to something extra-textual. There are good reasons for not
+including them in the sentence category (or, at least, for treating them
+as very special kinds of sentences). Similar status would apply to the
+names of characters preceding speeches in a drama or to numbers of
+stanzas in a poem.
+ 
+By and large, headings are easy to identify. Special cases are summaries
+of events or "tantalizers" at the beginning of a newspaper article or a
+short story or quotations at the beginning of a chapter of a book. Like
+headings, these may be highlighted typographically and sepa- rated from
+the rest of the text. But they are ordinary sentences or paragraphs and
+should be treated as special introductory elements in particular types
+of texts.
+ 
+2.2.5  Quotation
+ 
+Quotations are identified by quotation marks or, if long, they may just
+be separated from the rest of the text and possibly printed in smaller
+type or with closer spacing. The relationship of quotations to sentences
+and paragraphs is similar to that of lists. A quotation is typically
+part of a sentence, e.g.: She said, "... ". The quotation may contain
+sentences, paragraphs, and even headings (preceded by an enumerator).
+As with lists, quotations may occur within quotations (normally
+indicated by different types of quotation marks). The solution is again
+to recognise different levels of elements.
+ 
+As quotations are indicated typographically in a variety of ways, as
+begin-quote and end-quote marks may look the same, and as the single
+end-quote mark is identical to the apostrophe, it is preferable to use
+explicit begin-quote and end-quote tags.
+ 
+A simple example will illustrate the use of quotations in different
+parts of superordinate sentences:
+ 
+    Initial:   "I disagree completely," she said.
+    Final:     She said, "I disagree completely."
+    Medial:    She said, "I disagree completely," and left the room.
+ 
+The three types were treated differently in the LOB Corpus, where the
+notion of "included sentence" was introduced at a late stage to avoid an
+unfortunate sentence division with quotation in medial position. But
+they are best dealt with in the same way, with a level 1 sentence and an
+included level 2 sentence.
+ 
+It may be desirable to distinguish between quotation and direct speech
+in fiction. In dramas where everything except stage directions is direct
+speech by default, there is of course no need for special marking.
+ 
+Note, finally, that quotation marks are used for other purposes than
+quotation, in particular as distancing devices (like "so-called) and
+when used to mention linguistic forms (the word "to") or gloss their
+meanings (in the sense "X"). In these cases, it is of course irrelevant
+to use begin-quote and end-quote tags (but there may still be a case for
+distinguishing single end-quote marks from the apostrophe).
+ 
+2.2.6 Foreign-language material
+ 
+It is desirable to tag foreign elements in predominantly monolingual
+texts and to tag sections in each language in bi- or multilingual texts.
+Problems of tagging arise in monolingual texts with single words and
+phrases derived from foreign sources. There is a cline from elements
+which are completely integrated into the receiving language and are no
+longer perceived as foreign to those which are expressly said to be
+foreign or are indicated as such by some typographical device (foreign
+alphabet, italics, quotation marks, or capitalization). There may be
+something to be said for the practice followed in the LOB Corpus only to
+tag words or phrases expressly said to be or indicated as foreign. This
+practice means that the same word may be treated differently depending
+upon the context and that even normally very foreign-sounding words may
+be uncoded provided that the foreignness is not indicated or commented
+upon in any way in the text.
+ 
+2.2.7 Abbreviations
+ 
+The tagging of abbreviations prevents confusion of the full stop as an
+end-of-sentence marker and as an abbreviation marker. In the LOB Corpus
+abbreviation coding was used regardless of whether a short form of a
+word ended in a full stop or not (Mr., Mr). There are a number of
+problems of demarcation, however; see the LOB Corpus manual.
+ 
+If sentences are tagged explicitly, it may be unnecessary to tag
+abbreviations (unless the object is to distinguish abbrevations from
+ordinary vocabulary items).
+ 
+2.2.8 Names
+ 
+The tagging of names prevents confusion of capitalization to mark names
+from sentence openings. Note that parts of names may have lower-case
+initials (de Gaulle). Forms may simultaneously be names and
+abbreviations (e.g.  initials). There are problems of demarcation, as
+initial capitalization extends beyond sentence openings and names. See
+the types recognized in the tagged LOB Corpus.
+ 
+If sentences are tagged explicitly, it may be unnecessary to tag names
+(unless the object is to distinguish names from ordinary words or
+perhaps to identify names for indexing purposes).
+ 
+2.2.9 Emphasis
+ 
+For most purposes it is not essential to tag the variety of
+typographical shifts used in printed texts. Such marking rather clutters
+up the text and makes it harder to process by computer. Mechanisms for
+indicating significant typographical shifts should be provided, however,
+especially shifts of emphasis as indicated by italics, boldface, italic
+boldface, and underlining.
+ 
+The great variety of highlighting in headlines and enumerators is best
+left untagged (unless there is a shift within the heading).
+ 
+2.2.10 Hyphen
+ 
+Mechanisms must be provided for distinguishing hyphen and dash and for
+distinguishing line-end hyphens from those which are integral parts of
+words. The former should be removed or given special codes. Line-end
+hyphens were removed in the LOB Corpus unless dictionaries showed that
+hyphenation was normal or the word in question was found hyphenated
+elsewhere in the text (this left some cases undecided, however).
+ 
+A way of temporarily avoiding the problem in converting texts from
+printed to machine-readable form is to preserve the lineation of the
+original. But this may not always be possible. And any subsequent
+processing of words presupposes that the hyphenation problem has been
+dealt with.
+ 
+There is a good case for recommending non-use of line-end hyphens in
+machine-readable texts or for devising a special "word continuation"
+marker.
+ 
+Spacing is a simple way of distinguishing hyphen and dash; dashes could
+be distinguished from hyphens by consistent use of surrounding spaces
+(while hyphens are immediately preceded and/or followed by other
+characters).  Alternatively, dashes could be marked as double hyphens,
+as is sometimes done in written manuscripts.
+ 
+2.2.11 Word
+ 
+Like the sentence, the word is hard to define exactly. But there is good
+consistency in word division in written material in English and many
+other languages, and the word can therefore usefully be defined as a
+sequence of alphanumeric characters surrounded by spaces, with
+elimination of any initial or final punctuation marks (except final full
+stops in abbrevations and initial and final apostrophes and hyphens:
+'em, boys', livin', fourteenth-, -room, etc). There may be a case for
+allowing words to contain punctuation marks, as in analyses of the LOB
+Corpus in cases like: 2.1, 3,000, M.A.
+ 
+The simplest solution is to apply ordinary spacing conventions in
+machine-readable texts, although this gives rise to some very strange
+"words": A1, 2.1, 1951-52, etc. Some strange forms arise with
+hyphenation (see also the examples in the paragraph above) of compounds
+and complex premodifiers, as in: four-letter word, New York-born, etc.
+ 
+For most purposes it is probably possible to live with the simple
+orthographic definition given above. But any more sophisticated analysis
+of words will require special coding. The tagging of enumerators,
+abbreviations, and foreign words (cf above) takes care of part of the
+problem. There is a need for a mechanism for indicating that a sequence
+surrounded by spaces may be part of a word, as in: bi- or multilingual,
+the ending ER. We need a mechanism for splitting up contracted forms, as
+in: didn't, it's. And we need mechanisms for dealing with the problems
+of hyphenation illustrated above. (A particular problem in English is
+that genitives and some contracted form may look alike, e.g.: John's =
+John's (genitive), John is, John has.)
+ 
+It is possible that some of these problems can only be meaningfully
+solved if the text is subjected to more exhaustive linguistic tagging.
+Note, for example, that the ending in group genitives really belongs to
+a phrase rather than to the word it is attached to: the King of Sweden's
+crown, an hour and a half's talk, John and Mary's car, etc.
+ 
+2.2.11 Capitalization
+ 
+In some early corpora which only had a limited character set available
+the text was given in upper case and capitalization in the original text
+was indicated by special codes. Where the character set includes upper
+and lower case, it is natural to reproduce capitalization as given in
+the original text. It may, however, be desirable to code sentences
+and/or names (cf above) and thus distinguish between capitalization used
+for different purposes.
+ 
+If capitalization is coded or if changes are made in the distribution of
+upper and lower case, this should of course be declared (like all
+editing and coding decisions).
+ 
+2.3 Reference system
+ 
+To make it possible to use and refer to a machine-readable text, there
+must be an explicit reference system. In converting printed text to
+machine-readable form it is often essential to include markers of page
+and line division (etc) in the machine-readable version. These can then
+be used for reference purposes. In many cases it may be useful to keep
+the same line division in the machine-readable version as in the
+original text.
+ 
+In a sample text corpus with a large number of texts represented it is
+natural to introduce a new reference system. The system used in the LOB
+Corpus, where each line is prefixed by a code for text category, text
+number, and line number (e.g. A12 100), has been found very useful.
+References to the original location of the texts are given in an
+accompanying manual.
+ 
+2.4 Concluding remarks
+ 
+The principal consideration for the corpus compiler is to produce a
+faithful representation of the text and to document sources, coding
+conventions, and editorial decisions. In this paper I have mainly drawn
+on my experiences from work with the LOB Corpus. The fact that this
+corpus has been widely used is evidence that the practices used have
+been successful. This does not mean, however, that these are practices
+to be recommended for future corpus compilers. It is desirable to rely
+less on a printed manual, to make available more information on sources
+and coding in the corpus itself, and - best of all - to work for common
+coding conventions which reduce the need to specify the coding decisions
+for each individual corpus.
+ 
+In this paper I have limited the discussion to the encoding of elements
+for which there are established conventions in printed texts.  Building
+on these conventions and refining them by mechanisms for more explicit
+marking is probably a good way of arriving at generally accepted
+guidelines for the encoding of machine-readable texts.
+ 
+August, 1989
+Stig Johansson
+University of Oslo
