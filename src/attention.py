@@ -33,7 +33,7 @@ class MultiHeadSelfAttention(nn.Module):
         #calculate attention scores
         scores = (q @ k.transpose(-2, -1)) / (self.head_dim ** 0.5)# scores -> (B, n_heads, T, T)
         if attn_mask is not None:
-            scores = scores.mask_fill(~attn_mask, float('-inf'))
+            scores = scores.masked_fill(~attn_mask, float('-inf'))
         
         attn = F.softmax(scores, dim=-1) # why the last column, because (B, n_heads, query T, key T) and we want to see probability distribution across key for each query
         attn = self.attn_dropout(attn)

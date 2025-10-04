@@ -3,6 +3,8 @@ from src.dataset import TextDataset
 from src.model import TransformerLM
 import torch
 from torch.utils.data import DataLoader
+import os
+import joblib
 
 SEQ_LENGTH = 8
 BATCH_SIZE = 2
@@ -10,12 +12,15 @@ D_MODEL = 256
 N_LAYERS = 4
 N_HEADS = 4
 FFN_FACTOR = 4
-NUM_EPOCHS = 1
+NUM_EPOCHS = 10
+
+if not os.path.exists("checkpoints"):
+    os.mkdir("checkpoints")
 
 
 device = torch.device("cpu")
 
-with open("data/tiny.txt", "r") as f:
+with open("data/example.txt", "r") as f:
     raw_texts = f.read()
 
 
@@ -41,7 +46,7 @@ for epoch in range(NUM_EPOCHS):
 
     for xb, yb in loader:
         xb, yb = xb.to(device), yb.to(device)
-        logits = model(xb, attn_mask=mask)
+        logits = model(xb, attn_mask=mask).to(device)
         loss = criterion(logits.view(-1, tokenizer.vocab_size), yb.view(-1))
 
         optimizer.zero_grad()
@@ -54,3 +59,4 @@ for epoch in range(NUM_EPOCHS):
     print(f"Epoch {epoch+1}/{NUM_EPOCHS}, Loss: {avg_loss:.4f}")
     torch.save(model.state_dict(), f"checkpoints/checkpoint_epoch{epoch}.pt")
 
+joblib.dump(tokenizer, "checkpoints/tokenizer.joblib")

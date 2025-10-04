@@ -1,6 +1,14 @@
 import torch
 import torch.nn.functional as F
 
+SEQ_LENGTH = 8
+BATCH_SIZE = 2
+D_MODEL = 256
+N_LAYERS = 4
+N_HEADS = 4
+FFN_FACTOR = 4
+NUM_EPOCHS = 10
+
 @torch.no_grad()
 def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, device="cpu"):
     """
@@ -44,3 +52,18 @@ def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, devic
     # Decode generated tokens to string
     output_text = tokenizer.decode(generated[0].tolist())
     return output_text
+
+if __name__ == "__main__":
+    from src.model import TransformerLM
+    import joblib
+
+    device = torch.device('cpu')
+    tokenizer = joblib.load("checkpoints/tokenizer.joblib")
+
+    model = TransformerLM(tokenizer=tokenizer, d_model=D_MODEL, d_ff=D_MODEL, seq_length=SEQ_LENGTH, n_layers=N_LAYERS, n_heads=N_HEADS, ffn_factor=FFN_FACTOR, dropout=0.1).to(device)
+    model.load_state_dict(torch.load("checkpoints/checkpoint_epoch9.pt", map_location=device))
+    model.eval()
+
+    prompt = "Hello my name is"
+    generated_text = generate(model, tokenizer, prompt, max_new_tokens=20, temperature=1, device=device)
+    print("".join(generated_text))
