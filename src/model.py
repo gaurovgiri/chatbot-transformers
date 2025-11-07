@@ -28,7 +28,7 @@ class TransformerLM(nn.Module):
         self.trf_blocks = nn.ModuleList([
             TransformerBlock(d_model, d_ff*ffn_factor, n_heads) for _ in range(n_layers)
         ]
-        )
+        ) # B, T, d_model
 
         self.ln_f = nn.LayerNorm(d_model, eps=1e-5)
         self.lm_head = nn.Linear(d_model, vocab_size)
